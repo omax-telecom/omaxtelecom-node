@@ -4,6 +4,13 @@
   "description": "Official Node.js SDK for the OmaxTelecom APIs: SMS, OTP, Bappy, Phone Numbers and webhooks.",
   "license": "MIT",
   "homepage": "https://developer.omaxtelecom.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omax-telecom/omaxtelecom-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/omax-telecom/omaxtelecom-node/issues"
+  },
   "keywords": [
     "omaxtelecom",
     "sms",
