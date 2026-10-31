@@ -21,7 +21,10 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Tag matches package.json
-        run: test "v$(node -p 'require(\"./package.json\").version')" = "${GITHUB_REF_NAME}"
+        run: |
+          version="v$(node -p "require('./package.json').version")"
+          echo "package.json: $version, tag: $GITHUB_REF_NAME"
+          test "$version" = "$GITHUB_REF_NAME"
       - run: npm run typecheck && npm test && npm run build
       - run: npm publish --access public --provenance
         env:
