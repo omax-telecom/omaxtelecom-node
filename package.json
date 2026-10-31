@@ -1,0 +1,52 @@
+{
+  "name": "@omaxtelecom/sdk",
+  "version": "0.1.0",
+  "description": "Official Node.js SDK for the OmaxTelecom APIs: SMS, OTP, Bappy, Phone Numbers and webhooks.",
+  "license": "MIT",
+  "homepage": "https://developer.omaxtelecom.com",
+  "keywords": [
+    "omaxtelecom",
+    "sms",
+    "otp",
+    "esim",
+    "bappy",
+    "phone numbers",
+    "webhooks",
+    "sdk"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.130",
+    "openapi-typescript": "^7.13.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9"
+  }
+}
