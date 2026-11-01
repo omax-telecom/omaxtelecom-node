@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import type { TokenManager } from "./auth.js";
 import { OmaxApiError, OmaxConnectionError, OmaxError, OmaxTimeoutError } from "./errors.js";
 
-export const SDK_VERSION = "0.1.1";
+export const SDK_VERSION = "0.1.2";
 
 /** Options you can pass as the last argument of any method. */
 export type RequestOptions = {

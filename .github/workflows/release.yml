@@ -1,6 +1,6 @@
 name: Release
 
-# Push a tag like v0.1.1 to publish that version to npm.
+# Push a tag like v0.1.2 to stage that version on npm, then approve it there.
 # Publishing uses npm trusted publishing (OIDC): no npm token is stored here.
 on:
   push:
@@ -20,8 +20,8 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org
           cache: npm
-      # Trusted publishing needs npm 11.5.1 or newer.
-      - run: npm install -g npm@^11.5.1
+      # Trusted publishing and `npm stage` need a recent npm 11.
+      - run: npm install -g npm@^11.21.1
       - run: npm ci
       - name: Tag matches package.json
         run: |
@@ -29,5 +29,7 @@ jobs:
           echo "package.json: $version, tag: $GITHUB_REF_NAME"
           test "$version" = "$GITHUB_REF_NAME"
       - run: npm run typecheck && npm test && npm run build
+      # Stages the version: it becomes public only after a maintainer approves it
+      # on npmjs.com (or with `npm stage approve <id>`) with 2FA.
       # Provenance is added automatically with trusted publishing.
-      - run: npm publish --access public
+      - run: npm stage publish --access public
