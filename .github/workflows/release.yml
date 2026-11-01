@@ -1,6 +1,7 @@
 name: Release
 
-# Push a tag like v0.1.0 to publish that version to npm.
+# Push a tag like v0.1.1 to publish that version to npm.
+# Publishing uses npm trusted publishing (OIDC): no npm token is stored here.
 on:
   push:
     tags: ["v*"]
@@ -13,12 +14,14 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
           registry-url: https://registry.npmjs.org
           cache: npm
+      # Trusted publishing needs npm 11.5.1 or newer.
+      - run: npm install -g npm@^11.5.1
       - run: npm ci
       - name: Tag matches package.json
         run: |
@@ -26,6 +29,5 @@ jobs:
           echo "package.json: $version, tag: $GITHUB_REF_NAME"
           test "$version" = "$GITHUB_REF_NAME"
       - run: npm run typecheck && npm test && npm run build
-      - run: npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # Provenance is added automatically with trusted publishing.
+      - run: npm publish --access public
