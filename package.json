@@ -1,6 +1,6 @@
 {
   "name": "@omaxtelecom/sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Official Node.js SDK for the OmaxTelecom APIs: SMS, OTP, Bappy, Phone Numbers and webhooks.",
   "license": "MIT",
   "homepage": "https://developer.omaxtelecom.com",

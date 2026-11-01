@@ -2,6 +2,10 @@
 
 All notable changes to this package are listed here. The project follows [semantic versioning](https://semver.org).
 
+## 0.1.1
+
+- Published with npm trusted publishing from GitHub Actions. No changes to the library.
+
 ## 0.1.0
 
 First release.

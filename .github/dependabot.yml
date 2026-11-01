@@ -7,6 +7,13 @@ updates:
     groups:
       dev-dependencies:
         dependency-type: development
+    ignore:
+      # Types must match the oldest supported Node.js (18), so newer APIs are not used by mistake.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      # Major versions of the build and test tools are upgraded by hand (they may drop Node 18).
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
